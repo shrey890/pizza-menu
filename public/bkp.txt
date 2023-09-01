@@ -1,0 +1,156 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import focacciaImg from "./pizzas/focaccia.jpg";
+import margheritaImg from "./pizzas/margherita.jpg";
+import spinaciImg from "./pizzas/spinaci.jpg";
+import funImg from "./pizzas/funghi.jpg";
+import proImg from "./pizzas/prosciutto.jpg";
+import salImg from "./pizzas/salamino.jpg";
+const pizzaData = [
+  {
+    name: "Focaccia",
+    ingredients: "Bread with italian olive oil and rosemary",
+    price: 6,
+    photoName: "pizzas/focaccia.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Margherita",
+    ingredients: "Tomato and mozarella",
+    price: 10,
+    photoName: "pizzas/margherita.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Spinaci",
+    ingredients: "Tomato, mozarella, spinach, and ricotta cheese",
+    price: 12,
+    photoName: "pizzas/spinaci.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Funghi",
+    ingredients: "Tomato, mozarella, mushrooms, and onion",
+    price: 12,
+    photoName: "pizzas/funghi.jpg",
+    soldOut: false,
+  },
+  {
+    name: "Pizza Salamino",
+    ingredients: "Tomato, mozarella, and pepperoni",
+    price: 15,
+    photoName: "pizzas/salamino.jpg",
+    soldOut: true,
+  },
+  {
+    name: "Pizza Prosciutto",
+    ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
+    price: 18,
+    photoName: "/pizza-menu/src/pizzas/prosciutto.jpg",
+    soldOut: false,
+  },
+];
+function App() {
+  const style = { textAlign: "center" };
+  return (
+    <div className="container" style={style}>
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+function Header() {
+  return (
+    <header className="header">
+      <h1 style={{ color: "red" }}>X Pizza Co.</h1>
+    </header>
+  );
+}
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza
+        name="Focaccia"
+        ingredients="Bread with italian olive oil and rosemary"
+        photoName={focacciaImg}
+        price={40}
+      />
+      <Pizza
+        name="Pizza Margherita"
+        ingredients="Tomato and mozarella"
+        photoName={margheritaImg}
+        price={20}
+      />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName={spinaciImg}
+        price={70}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        photoName={funImg}
+        price={90}
+      />
+      <Pizza
+        name="Pizza Salamino"
+        ingredients="Tomato, mozarella, and pepperoni"
+        photoName={salImg}
+        price={100}
+      />
+      <Pizza
+        name="Pizza Prosciutto"
+        ingredients="Tomato, mozarella, ham, aragula, and burrata cheese"
+        photoName={proImg}
+        price={120}
+      />
+    </main>
+  );
+}
+function Pizza(props) {
+  console.log(props);
+  const rupeeSign = '\u20B9'; // Unicode character for the Rupee sign
+
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div className="">
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price+10} {rupeeSign}</span>
+        <hr />
+      </div>
+    </div>
+  );
+}
+function Footer() {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+  // if (hour >= openHour && hour <= closeHour) alert("we're currently open");
+  // else alert("Sorry we're Closed");
+  return (
+    <>
+      <footer className="footer">
+        {" "}
+        {new Date().toLocaleTimeString()} We're Currently Open
+      </footer>
+      <p>&copy; Shrey</p>
+      <p>Built with ❤️ in beautiful <a href="https://www.google.com/search?gs_ssp=eJzj4tTP1TcwTLGwSDZg9OJMzMhNTUlMSkwBAEQgBoI&q=ahmedabad&oq=ahmeda&aqs=chrome.1.0i355i433i512j46i433i512j0i131i433i512j0i512l2j46i433i512j69i57j0i433i512j0i512l2.1353j0j4&sourceid=chrome&ie=UTF-8" target="_blank">Ahmedabad</a></p>
+    </>
+  );
+  // return React.createElement('footer', null,"We're currently open")
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
